@@ -29,9 +29,51 @@ export class Book {
         method: 'POST',
         callback: this.getBookById,
         requireToken: true,
+      },
+      {
+        route: '/create-book',
+        method: 'POST',
+        callback: this.createBook,
+        requireToken: true,
+      },
+      {
+        route: '/update-book/id/:id',
+        method: 'PUT',
+        callback: this.updateBook,
+        requireToken: true,
+      },
+      {
+        route: '/delete-book/id/:id',
+        method: 'DELETE',
+        callback: this.deleteBook,
+        requireToken: true,
       }
     ]
     ];
+  }
+
+  updateBook(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      let bookCtrl = model.controller;
+      let resp = await bookCtrl.update(req, null, null);
+      res.json({ message: 'Success', resp });
+    }
+  }
+
+  deleteBook(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      let bookCtrl = model.controller;
+      let resp = await bookCtrl.remove(req, null, null);
+      res.json({ message: 'Success', resp });
+    }
+  }
+
+  createBook(model: any) {
+    return async (req: Request, res: Response, next: NextFunction) => {
+      let bookCtrl = model.controller;
+      let resp = await bookCtrl.insert(req, null, null);
+      res.json({ message: 'Success', resp });
+    }
   }
 
   getAllBooks(model: any) {

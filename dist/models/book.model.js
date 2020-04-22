@@ -36,9 +36,51 @@ class Book {
                     method: 'POST',
                     callback: this.getBookById,
                     requireToken: true,
+                },
+                {
+                    route: '/create-book',
+                    method: 'POST',
+                    callback: this.createBook,
+                    requireToken: true,
+                },
+                {
+                    route: '/update-book/id/:id',
+                    method: 'PUT',
+                    callback: this.updateBook,
+                    requireToken: true,
+                },
+                {
+                    route: '/delete-book/id/:id',
+                    method: 'DELETE',
+                    callback: this.deleteBook,
+                    requireToken: true,
                 }
             ]
         ];
+    }
+    updateBook(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body===>', req.body);
+            let bookCtrl = model.controller;
+            let resp = yield bookCtrl.update(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    deleteBook(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body===>', req.body);
+            let bookCtrl = model.controller;
+            let resp = yield bookCtrl.remove(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    createBook(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log('req.body===>', req.body);
+            let bookCtrl = model.controller;
+            let resp = yield bookCtrl.insert(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
     }
     getAllBooks(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
