@@ -17,6 +17,7 @@ class Car {
                 year: { type: String, maxlength: 24 },
                 color: { type: String, maxlength: 24 },
                 mileage: { type: String, maxlength: 24 },
+                image_url: { type: String, maxlength: 1000 },
                 user_id: {
                     type: Number,
                     key: 'foreign',
@@ -61,7 +62,6 @@ class Car {
     }
     updateCar(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
             let carCtrl = model.controller;
             let resp = yield carCtrl.update(req, null, null);
             res.json({ message: 'Success', resp });
@@ -69,7 +69,6 @@ class Car {
     }
     deleteCar(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
             let carCtrl = model.controller;
             let resp = yield carCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
@@ -77,7 +76,6 @@ class Car {
     }
     createCar(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('req.body===>', req.body);
             let carCtrl = model.controller;
             let resp = yield carCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });

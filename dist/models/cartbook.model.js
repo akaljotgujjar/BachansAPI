@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class Book {
+class ShoppingCart {
     constructor(norm) {
         this.model = [{
                 id: { type: Number, key: 'primary' },
@@ -26,69 +26,23 @@ class Book {
                     onDelete: 'cascade',
                     onUpdate: 'cascade'
                 },
-            }, 'A table to store user book',
+            }, 'A table to store shopping cart',
             [
                 {
-                    route: '/get-all-books',
+                    route: '/get-shoppingcart',
                     method: 'POST',
-                    callback: this.getAllBooks,
+                    callback: this.getshoppingcart,
                     requireToken: true,
                 },
                 {
-                    route: '/get-book-by-id/:id',
-                    method: 'POST',
-                    callback: this.getBookById,
-                    requireToken: true,
-                },
-                {
-                    route: '/create-book',
-                    method: 'POST',
-                    callback: this.createBook,
-                    requireToken: true,
-                },
-                {
-                    route: '/update-book/id/:id',
-                    method: 'PUT',
-                    callback: this.updateBook,
-                    requireToken: true,
-                },
-                {
-                    route: '/delete-book/id/:id',
+                    route: '/deletecart',
                     method: 'DELETE',
-                    callback: this.deleteBook,
+                    callback: this.deletecart,
                     requireToken: true,
                 }
             ]];
     }
-    //delete books
-    deleteBook(model) {
-        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('deleteBook ----->', req.body);
-            let bookCtrl = model.controller;
-            let resp = yield bookCtrl.remove(req, null, null);
-            res.json({ message: 'Success', resp });
-        });
-    }
-    //update books
-    updateBook(model) {
-        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('updateBook ----->', req.body);
-            let bookCtrl = model.controller;
-            let resp = yield bookCtrl.update(req, null, null);
-            res.json({ message: 'Success', resp });
-        });
-    }
-    //create books
-    createBook(model) {
-        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            console.log('createBook ----->', req.body);
-            let bookCtrl = model.controller;
-            let resp = yield bookCtrl.insert(req, null, null);
-            res.json({ message: 'Success', resp });
-        });
-    }
-    // get books
-    getAllBooks(model) {
+    getshoppingcart(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             req.body = {
                 get: ['*']
@@ -98,16 +52,10 @@ class Book {
             res.json({ message: 'Success', resp });
         });
     }
-    getBookById(model) {
+    deletecart(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            req.body = {
-                get: ['*'],
-                where: {
-                    id: req.params.id
-                }
-            };
             let bookCtrl = model.controller;
-            let resp = yield bookCtrl.get(req, null, null);
+            let resp = yield bookCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
         });
     }
@@ -118,4 +66,4 @@ class Book {
         return this._model;
     }
 }
-exports.Book = Book;
+exports.ShoppingCart = ShoppingCart;

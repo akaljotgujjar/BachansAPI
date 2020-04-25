@@ -7,3 +7,4 @@ __export(require("./test.model"));
 __export(require("./exam.model"));
 __export(require("./book.model"));
 __export(require("./car.model"));
+__export(require("./cartbook.model"));
