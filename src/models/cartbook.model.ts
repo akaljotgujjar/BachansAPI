@@ -30,16 +30,23 @@ export class ShoppingCart {
         },
 
         {
-            route: 'add-shoppingcart/id/:id',
-            method: 'PUT',
+            route: '/add-shoppingcart',
+            method: 'POST',
             callback: this.addshoppingcart,
             requireToken: true,
         },
 
         {
-            route: '/deletecart',
+            route: '/deleteallcart',
             method: 'DELETE',
-            callback: this.deletecart,
+            callback: this.deleteallcart,
+            requireToken: true,
+        },
+
+        {
+            route: '/deletecartbook/id/:id',
+            method: 'DELETE',
+            callback: this.deletecartbook,
             requireToken: true,
         }
     ]];
@@ -59,16 +66,24 @@ export class ShoppingCart {
     addshoppingcart(model: any) {
         return async (req: Request, res: Response, next: NextFunction) => {
             let bookCtrl = model.controller;
-            let resp = await bookCtrl.update(req, null, null);
+            let resp = await bookCtrl.insert(req, null, null);
             res.json({ message: 'Success', resp });
         }
     }
 
-    deletecart(model: any) {
+    deletecartbook(model: any) {
         return async (req: Request, res: Response, next: NextFunction) => {
             let bookCtrl = model.controller;
             let resp = await bookCtrl.remove(req, null, null);
             res.json({ message: 'Success', resp });
+        }
+    }
+
+    deleteallcart(model: any) {
+        return async (req: Request, res: Response, next: NextFunction) => {
+            let bookCtrl = model.controller;
+            let resp = await bookCtrl.remove(req, null, null);
+            res.json({ message: 'Success', resp});
         }
     }
   

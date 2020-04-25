@@ -35,9 +35,21 @@ class ShoppingCart {
                     requireToken: true,
                 },
                 {
-                    route: '/deletecart',
+                    route: '/add-shoppingcart',
+                    method: 'POST',
+                    callback: this.addshoppingcart,
+                    requireToken: true,
+                },
+                {
+                    route: '/deleteallcart',
                     method: 'DELETE',
-                    callback: this.deletecart,
+                    callback: this.deleteallcart,
+                    requireToken: true,
+                },
+                {
+                    route: '/deletecartbook/id/:id',
+                    method: 'DELETE',
+                    callback: this.deletecartbook,
                     requireToken: true,
                 }
             ]];
@@ -52,7 +64,21 @@ class ShoppingCart {
             res.json({ message: 'Success', resp });
         });
     }
-    deletecart(model) {
+    addshoppingcart(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let bookCtrl = model.controller;
+            let resp = yield bookCtrl.insert(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    deletecartbook(model) {
+        return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            let bookCtrl = model.controller;
+            let resp = yield bookCtrl.remove(req, null, null);
+            res.json({ message: 'Success', resp });
+        });
+    }
+    deleteallcart(model) {
         return (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             let bookCtrl = model.controller;
             let resp = yield bookCtrl.remove(req, null, null);
