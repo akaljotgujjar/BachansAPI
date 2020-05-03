@@ -18,6 +18,7 @@ class ShoppingCart {
                 description: { type: String, maxlength: 99 },
                 image_url: { type: String, maxlength: 1000 },
                 quantity: { type: String, maxlength: 10 },
+                availablequantity: { type: Number, maxlength: 20 },
                 price: { type: String, maxlength: 20 },
                 user_id: {
                     type: Number,

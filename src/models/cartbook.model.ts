@@ -11,7 +11,7 @@ export class ShoppingCart {
         isbn: { type: String, maxlength: 24 },
         description: { type: String, maxlength: 99 },
         image_url: { type: String, maxlength: 1000 },
-        quantity: {type: String, maxlength: 10},
+        quantity: {type: Number, maxlength: 10},
         price: {type: String, maxlength: 20},
         user_id: {
             type: Number,
