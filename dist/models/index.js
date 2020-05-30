@@ -8,3 +8,4 @@ __export(require("./exam.model"));
 __export(require("./book.model"));
 __export(require("./car.model"));
 __export(require("./cartbook.model"));
+__export(require("./bachans.model"));

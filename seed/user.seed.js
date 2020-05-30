@@ -1,8 +1,8 @@
 [{
   "id": 1,
-  "email": "saiaungkoko@mail.fresnostate.edu",
-  "username": "Sai",
-  "password": "aungkoko123",
+  "email": "akaljotgujjar@mail.fresnostate.edu",
+  "username": "akaljotgujjar",
+  "password": "Babajiyouth22!",
   "super_admin": true,
   "site_admin": true,
   "hash": "CVI2C3WKYEdbL4yi3B9eE",
